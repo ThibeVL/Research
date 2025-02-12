@@ -1,19 +1,12 @@
 <template>
-  <div>
-    <h2 class="text-xl font-bold mb-4">Boekenlijst</h2>
-    <ul>
-      <li v-for="book in books" :key="book.id" class="border p-2 mb-2">
+  <v-card class="pa-4">
+    <v-card-title class="text-h5">Boekenlijst</v-card-title>
+    <v-list style="max-height: 400px; overflow-y: auto">
+      <v-list-item v-for="book in books" :key="book.id">
+        <v-icon color="primary">mdi-book</v-icon>
         {{ book.title }} - {{ book.author }}
-        <button @click="removeBook(book.id)" class="bg-red-500 text-white px-2 py-1 ml-2">X</button>
-      </li>
-    </ul>
-  </div>
+        <v-btn @click="removeBook(book.id)" color="red" class="ml-2">X</v-btn>
+      </v-list-item>
+    </v-list>
+  </v-card>
 </template>
-<script setup>
-import { useBookStore } from '@/stores/bookStore';
-import { storeToRefs } from 'pinia';
-
-const bookStore = useBookStore();
-const { books } = storeToRefs(bookStore);
-const { removeBook } = bookStore;
-</script>
