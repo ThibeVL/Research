@@ -9,9 +9,10 @@
   </v-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import { useBookStore } from '@/stores/bookStore'
+// Zorg dat je hier 'bookstore' (kleine letters) gebruikt, precies zoals het bestand heet!
+import { useBookStore } from '@/stores/bookstore'
 
 const bookStore = useBookStore()
 const title = ref('')

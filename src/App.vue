@@ -14,3 +14,7 @@
     </v-main>
   </v-app>
 </template>
+
+<script setup lang="ts">
+// Geen speciale script nodig hier
+</script>

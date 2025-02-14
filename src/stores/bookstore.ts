@@ -1,18 +1,29 @@
-import { defineStore } from 'pinia';
+// src/stores/bookstore.ts
+import { defineStore } from 'pinia'
+
+let idCounter = 0
+
+export interface Book {
+  id: number
+  title: string
+  author: string
+}
 
 export const useBookStore = defineStore('bookStore', {
   state: () => ({
-    books: [
-      { id: 1, title: 'Vue 3 Basics', author: 'Evan You' },
-      { id: 2, title: 'Mastering Pinia', author: 'John Doe' }
-    ]
+    books: [] as Book[],
   }),
   actions: {
     addBook(book: { title: string; author: string }) {
-      this.books.push({ id: Date.now(), ...book });
+      idCounter++
+      this.books.push({
+        id: idCounter,
+        title: book.title,
+        author: book.author,
+      })
     },
     removeBook(id: number) {
-      this.books = this.books.filter(book => book.id !== id);
-    }
-  }
-});
+      this.books = this.books.filter((b) => b.id !== id)
+    },
+  },
+})
